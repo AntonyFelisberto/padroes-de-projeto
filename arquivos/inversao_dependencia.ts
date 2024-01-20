@@ -1,3 +1,10 @@
+import localPosts from './local-database.json'
+
+export class JsonDatabaseService {
+    async getPosts():Promise<Post[]> {
+        return localPosts;
+    }
+}
 
 export class LocalDataBaseService {
     async getFakePosts(){
@@ -22,17 +29,23 @@ export interface Post{
 export class PostService {
     private posts:Post[] = [];
 
-    constructor(){}
+    constructor(private postProvider:JsonDatabaseService){}
 
     async getPosts(){
-        const jsonDb = new LocalDataBaseService();
-        this.posts = await jsonDb.getFakePosts();
+        //const jsonDb = new LocalDataBaseService();
+        //this.posts = await jsonDb.getFakePosts();
+
+        //const jsonDb = new JsonDatabaseService();
+        //this.posts = await jsonDb.getPosts();
+
+        this.posts = await this.postProvider.getPosts();
         return this.posts;
     }
 }
 
 (async() => {
-    const postService = new PostService();
+    const provider = new JsonDatabaseService();
+    const postService = new PostService(provider);
     const posts = await postService.getPosts();
     console.log({ posts });
 })
