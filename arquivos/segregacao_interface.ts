@@ -10,7 +10,7 @@ class Tucan implements Bird {
     public run(){}
 }
 
-class HumminBird {
+class HumminBird implements Bird{
     public fly(){}
     public eat(){}
     public run(){}
