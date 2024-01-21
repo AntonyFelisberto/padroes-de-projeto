@@ -4,6 +4,12 @@ export abstract class Vehicle {
 
 (()=> {
     const printCarSeats = (cars:Vehicle[]) => {
+
+        cars.forEach(car => {
+            console.log(car.constructor.name,car.getNumberOfSeats())
+        });
+
+        /** 
         for(const car of cars){
             if (car instanceof Tesla){
                 console.log("tesla",car.getNumberOfSeats())
@@ -16,18 +22,23 @@ export abstract class Vehicle {
             if (car instanceof Toyota){
                 console.log("Toyota",car.getNumberOfSeats())
                 continue
+            } 
+            if (car instanceof Honda){
+                console.log("Honda",car.getNumberOfSeats())
+                continue
             }
             if (car instanceof Honda){
                 console.log("Honda",car.getNumberOfSeats())
                 continue
             }
-            if (car instanceof Volvo){
-                console.log("Volvo",car.getNumberOfSeats())
-                continue
-            }
         }
+        */
     }
-})
+
+    const cars = [new Tesla(9)]
+    printCarSeats(cars)
+
+})()
 
 export class Tesla extends Vehicle {
 
